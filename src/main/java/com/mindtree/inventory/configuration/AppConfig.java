@@ -37,7 +37,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 	    dataSource.setUrl("jdbc:mysql://mysql-server:3306/inventory?autoReconnect=true&useSSL=false");
 	    dataSource.setUsername("root");
-	    dataSource.setPassword("root");	 
+	    dataSource.setPassword("Welcome123");	 
 	    return dataSource;
 	}
 	@Autowired
