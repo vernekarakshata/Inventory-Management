@@ -33,7 +33,7 @@ node {
     def hostname = "ec2-3-16-37-126.us-east-2.compute.amazonaws.com"
     def destination = "/home/ubuntu/tomcat/webapps/"
     
-    /*            Selenium Project Details             */
+    /*            Selenium Project Details              */
     def seleniumJob = 'Inventory-Selenium-Framework'
     
     /*            Email Details             */
