@@ -31,7 +31,7 @@ node {
     /*            Deployment Details             */
     def source = "target/InventoryManagement.war"
     def user = "ubuntu"
-    def hostname = "ec2-3-17-4-149.us-east-2.compute.amazonaws.com"
+    def hostname = "ec2-3-16-37-126.us-east-2.compute.amazonaws.com"
     def destination = "/home/ubuntu/tomcat/webapps/"
     
     /*            Selenium Project Details             */
