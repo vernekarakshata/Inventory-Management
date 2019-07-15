@@ -20,8 +20,8 @@
 					<form>
 						<fieldset>
 							<legend>Login</legend>
-							<label>Username:</label><br><input type="text" id="name"><br><br>
-							<label>Password:</label><br><input type="password" id="password"><br><br>
+							<label>Username</label><br><input type="text" id="name"><br><br>
+							<label>Password</label><br><input type="password" id="password"><br><br>
 							<div id="errormsg" class="error"></div>
 							<br>
 							<div class="centerbutton">
