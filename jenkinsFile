@@ -16,9 +16,6 @@ node {
     /*            JFrog Artifactory Details             */
     def artifactoryMavenGoals = 'clean install'
     def artifactoryServerId = 'JFROG_ARTIFACTORY'
-    def resolverId = 'repo-id'
-    def resolverReleaseRepo = 'pipeline-project-repo'
-    def resolversnapshotRepo = 'pipeline-project-repo'
     def deployerId = 'deploy-id' 
     def deployerReleaseRepo = 'pipeline-project-repo' 
     def deployersnapshotRepo = 'pipeline-project-repo'
@@ -58,7 +55,6 @@ node {
         }
         stage('Maven Build and Deploy the artifacts and publish build info'){
             mavenBuildArtifactoryDeployment(mavenToolName, pom, artifactoryMavenGoals, artifactoryServerId,  
-            resolverId, resolverReleaseRepo, resolversnapshotRepo,
             deployerId, deployerReleaseRepo, deployersnapshotRepo)
         }
         stage('Create Docker Image & Publich to Docker Hub'){
