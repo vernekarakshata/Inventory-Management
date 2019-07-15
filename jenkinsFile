@@ -20,13 +20,17 @@ node {
     def deployerReleaseRepo = 'pipeline-project-repo' 
     def deployersnapshotRepo = 'pipeline-project-repo'
     
+    def pattern = "${deployersnapshotRepo}/com/mindtree/inventory/InventoryManagement/0.0.1-SNAPSHOT/*.war"
+    def downloadDir = "ArtifactoryWarDeploy/"
+
+    
     /*            Docker Details             */
     def registry = "vernekarakshata/inventory-management"
     def registryCredential = 'c262e8a9-1c29-41fd-859d-85e0c520777e'
     def tagName = '$BUILD_NUMBER'
     
     /*            Deployment Details             */
-    def source = "target/InventoryManagement.war"
+    def source = "${downloadDir}InventoryManagement.war"
     def user = "ubuntu"
     def hostname = "ec2-3-17-4-149.us-east-2.compute.amazonaws.com"
     def destination = "/home/ubuntu/tomcat/webapps/"
@@ -61,6 +65,8 @@ node {
             dockerBuildImagePushToHub(registry, tagName, registryCredential);
         }
         stage('Deploy to Server'){
+            downloadFromArtifactory(pattern, downloadDir, artifactoryServerId)
+            sh "mv ${downloadDir}*.war ${downloadDir}InventoryManagement.war"
             deployToServer(source, user, hostname, destination)
         }
         stage('Execute Automation Test Suites'){
