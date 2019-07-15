@@ -16,12 +16,11 @@ node {
     /*            JFrog Artifactory Details             */
     def artifactoryMavenGoals = 'clean install'
     def artifactoryServerId = 'JFROG_ARTIFACTORY'
-    def resolverId = 'repo-id'
-    def resolverReleaseRepo = 'pipeline-project-repo'
-    def resolversnapshotRepo = 'pipeline-project-repo'
     def deployerId = 'deploy-id' 
     def deployerReleaseRepo = 'pipeline-project-repo' 
     def deployersnapshotRepo = 'pipeline-project-repo'
+    def pattern = "${deployersnapshotRepo}/com/mindtree/inventory/InventoryManagement/0.0.1-SNAPSHOT/*.war"
+    def downloadDir = "ArtifactoryWarDeploy/"
     
     /*            Docker Details             */
     def registry = "vernekarakshata/inventory-management"
@@ -29,7 +28,7 @@ node {
     def tagName = '$BUILD_NUMBER'
     
     /*            Deployment Details             */
-    def source = "target/InventoryManagement.war"
+    def source = "${downloadDir}InventoryManagement.war"
     def user = "ubuntu"
     def hostname = "ec2-3-16-37-126.us-east-2.compute.amazonaws.com"
     def destination = "/home/ubuntu/tomcat/webapps/"
@@ -46,7 +45,7 @@ node {
     def replyTo = ''
     
     try{
-        
+        /*
         stage('GIT Checkout') {
             gitCheckout(gitUrl,branchName)
         }
@@ -62,11 +61,14 @@ node {
         stage('Create Docker Image & Publich to Docker Hub'){
             dockerBuildImagePushToHub(registry, tagName, registryCredential);
         }
+        */
         stage('Deploy to Server'){
+            downloadFromArtifactory(pattern, downloadDir, artifactoryServerId)
+            sh "mv ${downloadDir}*.war ${downloadDir}InventoryManagement.war"
             deployToServer(source, user, hostname, destination)
         }
         stage('Execute Automation Test Suites'){
-            build job: "${seleniumJob}"
+      //      build job: "${seleniumJob}"
         }
    
     }finally{
