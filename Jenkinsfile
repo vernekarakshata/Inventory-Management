@@ -45,7 +45,7 @@ node {
     def replyTo = ''
     
     try{
-        /*
+        
         stage('GIT Checkout') {
             gitCheckout(gitUrl,branchName)
         }
@@ -61,14 +61,14 @@ node {
         stage('Create Docker Image & Publich to Docker Hub'){
             dockerBuildImagePushToHub(registry, tagName, registryCredential);
         }
-        */
+        
         stage('Deploy to Server'){
             downloadFromArtifactory(pattern, downloadDir, artifactoryServerId)
             sh "mv ${downloadDir}*.war ${downloadDir}InventoryManagement.war"
             deployToServer(source, user, hostname, destination)
         }
         stage('Execute Automation Test Suites'){
-      //      build job: "${seleniumJob}"
+            build job: "${seleniumJob}"
         }
    
     }finally{
