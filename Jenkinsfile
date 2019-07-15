@@ -57,9 +57,7 @@ node {
             checkQualitygate();
         }
         stage('Maven Build and Deploy the artifacts and publish build info'){
-            mavenDeploy(mavenToolName, pom, artifactoryMavenGoals, artifactoryServerId,  
-            resolverId, resolverReleaseRepo, resolversnapshotRepo,
-            deployerId, deployerReleaseRepo, deployersnapshotRepo)
+            mavenDeploy(mavenToolName, pom, artifactoryMavenGoals, artifactoryServerId,  deployerId, deployerReleaseRepo, deployersnapshotRepo)
         }
         stage('Create Docker Image & Publich to Docker Hub'){
             dockerBuildImagePushToHub(registry, tagName, registryCredential);
