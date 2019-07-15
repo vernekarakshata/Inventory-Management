@@ -57,7 +57,7 @@ node {
             checkQualitygate();
         }
         stage('Maven Build and Deploy the artifacts and publish build info'){
-            mavenBuildArtifactoryDeployment(mavenToolName, pom, artifactoryMavenGoals, artifactoryServerId,  
+            mavenDeploy(mavenToolName, pom, artifactoryMavenGoals, artifactoryServerId,  
             resolverId, resolverReleaseRepo, resolversnapshotRepo,
             deployerId, deployerReleaseRepo, deployersnapshotRepo)
         }
