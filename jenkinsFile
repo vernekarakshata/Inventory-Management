@@ -29,7 +29,7 @@ node {
     def registryCredential = 'c262e8a9-1c29-41fd-859d-85e0c520777e'
     def tagName = '$BUILD_NUMBER'
     
-    /*            Deployment Details             */
+    /*            Deployment Details            */
     def source = "${downloadDir}InventoryManagement.war"
     def user = "ubuntu"
     def hostname = "ec2-52-14-107-115.us-east-2.compute.amazonaws.com"
