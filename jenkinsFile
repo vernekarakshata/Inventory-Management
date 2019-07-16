@@ -49,6 +49,7 @@ node {
     try{
         
         stage('GIT Checkout') {
+        sh "echo $hostname"
             gitCheckout(gitUrl,branchName)
         }
         stage('SonarQube analysis and Quality Gate') {
