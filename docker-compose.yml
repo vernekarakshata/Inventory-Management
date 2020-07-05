@@ -1,0 +1,16 @@
+version: '3'
+services:
+  mysql-server:
+    container_name: mysql-server
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: Welcome123
+      MYSQL_ROOT_HOST: '%'
+    restart: always
+  spring-backend:
+    depends_on:
+      - mysql-server
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
