@@ -1,2 +1,2 @@
 # Inventory-Jenkins
-This is inventory management project with jenkins
+This is inventory management project with JenkinsFile. 
