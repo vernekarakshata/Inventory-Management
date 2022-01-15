@@ -1,8 +1,14 @@
 # Inventory Management
 This is a sample spring boot based project with webapp based on Inventory Management. Here we can add items in cart and delete. 
 
-## Execution
+## Contents
+- Codebase with API and WebApp.
+- mysql dump file to insert data into DB.
+- Dockerfile.
+- docker-compose file.
+- jenkinsfile
 
+## Execution
 
 ### Docker
 Inventory Management is very easy to install and deploy in a Docker container.
